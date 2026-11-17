@@ -21,3 +21,6 @@ The Planditor connector already gives Claude this same procedure (its `start_sit
 ## Install
 - **Claude Code:** copy the `planditor-site-plan` folder into `~/.claude/skills/`.
 - **claude.ai / desktop app:** Settings → Capabilities → Skills → upload the `planditor-site-plan` folder as a zip.
+
+## Also here: planditor-site-launch
+`planditor-site-launch/` puts a planned site live on **BMS by Rehan** (Cloudflare or your own Node.js hosting): it asks for the domain and where the site should run, downloads BMS from its public GitHub repo, walks you through the deploy, the domain and the admin, and records the launch in Planditor. In Planditor it is the **Launch with Claude on BMS** button, which works once the site's keywords are grouped and its topical map is ready, and only for a site that is not live yet. It writes no content. Best in Claude Code, which can run the download and the deploy for you.
