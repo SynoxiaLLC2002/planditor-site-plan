@@ -101,3 +101,26 @@ Avoid the AI-made look: an ALL-CAPS label above every heading, "Read more →" o
 - update_site: Platform "BMS (Cloudflare)" or "BMS (hosting)", Notes: where it runs, the app folder or site name, the launch date. (Stage and Pages live follow the published pages by themselves.) Never put passwords, secrets or setup codes in Planditor.
 - add_rows on **tasks**: one row per page from the map not written yet, in priority order (Type "new page", Stage "todo", Brief = the slug), plus the legal pages and any go-live check still open. Pages already published are marked by Planditor by itself.
 - Finish with a short summary: the site address, the admin address, what is live, what they still do themselves, and the next step (the next pages from the briefs; later, when they want, the SEO audit and the off-page plan).
+
+## Demo sites (no domain yet)
+A demo site's Planditor address ends in `.demo` (like `coffee-grinders-3f2a.demo`). It is only a name: there is no domain yet. The workflow is the same (plan, content, design, speed); only these parts change:
+- **Step 1:** never ask for a domain. Ask where the demo runs:
+  - **Cloudflare (if they have Workers Paid):** Steps 2 and 3a, but run deploy.ps1 WITHOUT `-Domain`. The site runs at `https://<site-name>.<their-name>.workers.dev`. Take the site name from the niche (`coffee-grinders`) and keep it: the move to the domain later uses the same name, so nothing is lost.
+  - **This computer (localhost), Claude Code only:** the MariaDB edition (Step 2, hosting repo) with a local MariaDB or MySQL (XAMPP, or MariaDB for Windows). `.env.local` from release/env.example with the local `DATABASE_URL`, a fresh `AUTH_SECRET`, `NEXTAUTH_URL=http://localhost:3000`, `AUTH_TRUST_HOST=true` and `NEXT_PUBLIC_SITE_URL=http://localhost:3000`; then `npm install`, `npm run db:migrate`, `npm run dev`, and open http://localhost:3000/admin/setup. It runs only while the computer and that terminal are on.
+- **Hide it from Google before the first page:** Admin → **SEO** → **robots.txt** tab → replace the text with the lines below → Save. Site Health warns about it: that is expected for a demo.
+  ```
+  User-agent: *
+  Disallow: /
+  ```
+- **Step 4:** Settings → Site URL = the demo address (the workers.dev address, or `http://localhost:3000`).
+- **Step 5 and Step 9:** no Search Console, no Bing, no sitemap submission for a demo. Pages are published as usual.
+- **Step 10:** update_site Notes: the demo address and where it runs (the Cloudflare site name, or the folder). Platform stays "BMS (demo)".
+
+### Moving a demo to its domain
+When the person has the domain:
+1. Planditor → **Sites** → the demo's row → **Move to domain** → type the domain. The plan, tasks, audits and the Claude connector stay; only the address changes.
+2. Cloudflare demo: add the domain to Cloudflare (Step 3a, point 6), then run the SAME command with the SAME `-Site` name plus `-Domain <domain>`. Pages, images and settings stay.
+   Localhost demo: put BMS live on the domain (Step 3a or 3b and Step 4), then move the content: on the local site Admin → **Settings** → **Export content**; on the live site Admin → **Settings** → **Import content** with that file. Check the menus and images after the import.
+3. Admin → Settings → Site URL → `https://<domain>` → Save.
+4. Admin → SEO → robots.txt tab: remove `Disallow: /` (keep only BMS's own /admin and /api lines) → Save. Open `https://<domain>/robots.txt` to check.
+5. Then Step 9 as for any site (Search Console, the sitemap, Bing, the contact form) and Step 10 with Platform "BMS (Cloudflare)" or "BMS (hosting)".
