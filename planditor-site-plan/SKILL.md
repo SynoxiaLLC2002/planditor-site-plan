@@ -41,6 +41,14 @@ The seed is the topic in the searcher's words (from the domain, the user's line,
 Write one **serps** row per search: Keyword, Our page (empty until Step 3), Country, Volume, KD, Our position (live site: from search_console), Top 10 (URLs in order, one per line), Micro sites (how many in the top 10 and which), Weak spots, People also ask, Related searches, Features, Checked (today's date), Notes (kinds, why macro pages rank).
 Write every keyword you saw (seed, Lens lists, PAA as questions) into **keywords**: Keyword, Volume, KD, CPC, Intent (informational / commercial / transactional / navigational / local), Source ("Lens <seed>", "PAA", "autocomplete", "Search Console"). Fill missing volumes with keyword_volumes (up to 1,000 per call) in the target country.
 
+## Step 1b: the competitors' keywords from Ahrefs (ask, then wait)
+Once the SERPs show who ranks, STOP and ask the user for the **Ahrefs organic keywords exports** of the top competitors. Name the 2 to 5 sites from the serps rows, micro sites first, then the macro pages ranking best. Give the steps:
+Ahrefs → **Site Explorer** → type the competitor's domain (for a macro site, its folder or page URL) → left menu **Organic search → Organic keywords** → the country at the top = the target country → **Export** → **Full export** (or all rows) → CSV. One file per competitor.
+They can upload the files in this chat, or import them in Planditor: Keywords tab → **Import** button (top bar) → pick the CSV (Ahrefs' column names and file encoding are read by themselves). When they imported in Planditor, read the keywords tab again with get_tab before going on.
+- Files in the chat: add every row to **keywords** with add_rows: Keyword, Volume, KD, CPC, Position (their position), URL (their ranking URL), Traffic, Intent, Source "Ahrefs <competitor domain>". Skip rows already in the tab (same keyword); fill an empty Volume or KD from the export instead.
+- Read them as gaps and openings: keywords where 2+ competitors rank go on the map; a competitor URL that ranks for many keywords is a page we need; low-KD keywords where a micro site sits in the top 10 are first-priority pages.
+- No Ahrefs (or the user says skip): say the map then rests on the SERPs and Lens only, write that in the summary, and go on. Never guess what a competitor ranks for.
+
 ## Step 2: a live site's own state (skip for a new domain)
 - search_console: queries and pages for 16 months (days 486), and query + page for 90 days. Every query at positions 5 to 20 is a quick win: put it in keywords with Position and URL, and mark it in the map.
 - get_audit: the pages that exist, their titles and the issues. The plan builds on the pages already there.
