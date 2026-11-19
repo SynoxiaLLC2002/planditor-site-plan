@@ -17,7 +17,7 @@ The site is the one this connector belongs to. The plan is the same for an old s
 1. **The main keyword**: the one search the site most wants to rank for (for example "chilis menu", "mold removal chicago", "topical map generator"). The research starts from it.
 2. **What kind of site it is**: a **content site** (blog, guides, info), **local** (a business or lead site for one area: services × cities), **e-commerce** (a shop: categories and products), or a **product / SaaS** site? It decides how the map is built (Step 3).
 3. Is the site already live with pages, or a new domain with nothing on it yet?
-4. Which country (and language) does it target? (If they don't know: the country the Lens "Searches by country" box shows first for the main keyword.)
+4. Which country (and language) does it target, or worldwide? (If they don't know: the country the Lens "Searches by country" box shows first for the main keyword. Worldwide: Step 1 checks the top 2 countries first.)
 Write the main keyword, the kind and the country on the Sites dashboard (update_site: Main keyword, Niche, Country) when those cells are empty.
 
 Then check your tools:
@@ -31,6 +31,7 @@ Read the tabs first (get_tab on serps, keywords, topical-map, competitors, brief
 ## Step 1: the SERPs, read with Niche Miner Lens
 The seed is the topic in the searcher's words (from the domain, the user's line, and what Google autocompletes).
 1. Search the seed in Chrome (your own new tab). In the Lens **Searches by country** box click the target country ("See Google in <country>"): that SERP is the one you work from. Page 2 is the same URL with `&start=10`.
+   **Worldwide (no single country):** before anything else, read the Lens **Searches by country** box and check the SERPs of the **2 countries with the most searches** ("See Google in <country>" for each, pages 1 and 2). Micro sites can rank in one country and not in the other: these two SERPs decide whether the niche is open and which country to build for first. Write one serps row per country (Country filled) and say in Notes which of the two is easier and why.
 2. Read page 1 AND page 2 (most small sites sit on page 2). For each result: URL, DR, the Lens new/small tag, and its kind: **micro** (a site about this niche only), **macro** (a big site with one page or section on it), official, forum, video, directory.
 3. **Are micro sites ranking?** If yes, they are the competitors to study and beat, and the niche is open to a small site. If no micro site is on pages 1 to 2, open each macro page and write down why it ranks (what it answers first, tables, data, freshness, author, DR). Lens weak spots tell whether a strong page can take a spot.
 4. Read the Lens lists (Related, People also search for, People also ask) as text, with their volumes.
