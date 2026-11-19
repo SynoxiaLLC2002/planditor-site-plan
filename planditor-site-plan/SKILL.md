@@ -44,8 +44,13 @@ Write every keyword you saw (seed, Lens lists, PAA as questions) into **keywords
 ## Step 1b: the competitors' keywords from Ahrefs (ask, then wait)
 Once the SERPs show who ranks, STOP and ask the user for the **Ahrefs organic keywords exports** of the top competitors. Name the 2 to 5 sites from the serps rows, micro sites first, then the macro pages ranking best. Give the steps:
 Ahrefs → **Site Explorer** → type the competitor's domain (for a macro site, its folder or page URL) → left menu **Organic search → Organic keywords** → the country at the top = the target country → **Export** → **Full export** (or all rows) → CSV. One file per competitor.
-They can upload the files in this chat, or import them in Planditor: Keywords tab → **Import** button (top bar) → pick the CSV (Ahrefs' column names and file encoding are read by themselves). When they imported in Planditor, read the keywords tab again with get_tab before going on.
-- Files in the chat: add every row to **keywords** with add_rows: Keyword, Volume, KD, CPC, Position (their position), URL (their ranking URL), Traffic, Intent, Source "Ahrefs <competitor domain>". Skip rows already in the tab (same keyword); fill an empty Volume or KD from the export instead.
+**The easy way: give the files to Claude in this chat.** Tell them: drag the CSV files into the message box (or click **+** → **Upload a file**) and send. That is all they do; you sort out the rest yourself, without asking them anything about the files:
+- Read each file (Ahrefs exports are often UTF-16 with tabs: read them as they are). Work out which competitor each file is from its name or its URLs.
+- Clean it: drop branded searches of the competitor itself (its name, its domain), junk and foreign-language rows that do not fit the target country, and exact duplicates. Merge the same keyword across files into one row (the best competitor position and its URL; the Source lists every competitor that ranks for it).
+- Skip keywords already in the tab (same keyword); fill their empty Volume or KD from the export instead.
+- Add the rest to **keywords** with add_rows, in batches: Keyword, Volume, KD, CPC, Position (the competitor's), URL (its ranking URL), Traffic, Intent, Source "Ahrefs <competitor domain(s)>".
+- Then tell them in a few lines what the files showed: how many keywords were added, the competitors' strongest pages, and the openings.
+(Or, if they prefer, Planditor → Keywords tab → **Import** button → the CSV. Then read the keywords tab with get_tab before going on.)
 - Read them as gaps and openings: keywords where 2+ competitors rank go on the map; a competitor URL that ranks for many keywords is a page we need; low-KD keywords where a micro site sits in the top 10 are first-priority pages.
 - No Ahrefs (or the user says skip): say the map then rests on the SERPs and Lens only, write that in the summary, and go on. Never guess what a competitor ranks for.
 
