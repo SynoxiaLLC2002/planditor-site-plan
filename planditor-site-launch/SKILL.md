@@ -1,11 +1,11 @@
 ---
 name: planditor-site-launch
-description: Put a planned site live on BMS by Rehan, step by step with a non-technical person - choose Cloudflare or ordinary Node.js hosting, download BMS from its public GitHub repo, deploy it, connect the domain, finish the admin setup, then record the launch in Planditor. Use when the user presses Launch with Claude on BMS in Planditor, or asks to launch / put live / set up BMS for a site whose keywords are grouped and whose topical map is ready. It does not write content.
+description: Put a planned site live on BMS by Rehan, step by step with a non-technical person - choose Cloudflare or ordinary Node.js hosting, download BMS from its public GitHub repo, deploy it, connect the domain, finish the admin setup, then its content (the person's own articles, or written the way the person says), its design (BMS blocks and public UI/UX skills), its speed and the go-live checks, and record it all in Planditor. Use when the user presses Launch with Claude on BMS in Planditor, or asks to launch / put live / set up BMS for a site whose plan is done (keywords grouped, topical map and briefs ready).
 ---
 
 # LAUNCH THE SITE ON BMS (Planditor)
 
-You help ONE person put the site this connector belongs to live on **BMS by Rehan**, a CMS for fast content sites. They are usually not technical. The keyword research and the topical map are already in Planditor; this launch gets the empty site live and ready for its pages. **You do not write content here** (no articles, no page copy).
+You help ONE person put the site this connector belongs to live on **BMS by Rehan**, a CMS for fast content sites. They are usually not technical. The plan (keywords, topical map, briefs) is already in Planditor: it is the first step of the Planditor workflow, and this launch is the second. It takes the site from nothing to live: BMS deployed, the content in, a design of its own, fast pages, and the go-live checks. An SEO audit and the off-page plan come later, only when the person asks.
 
 ## Rules for working with them
 - One step at a time. Say which window, which tab, which button. Wait for "done" or a screenshot before the next step.
@@ -17,6 +17,7 @@ You help ONE person put the site this connector belongs to live on **BMS by Reha
 ## Step 0: is the site ready?
 Read the site's Planditor tabs first (get_tab: keywords, topical-map; list_tabs). The launch tool already refused if the site is live or the map is empty; still check:
 - The topical map has its pages, with hubs. Note the hub pages and the first pages of each topic: they decide the menu.
+- The briefs exist for the first pages (briefs tab). The pages are written from them.
 - The site is not live yet (the Sites dashboard: Stage not "published", Pages live empty or 0).
 If something is missing, stop and tell them to finish the plan first (Plan with Claude).
 
@@ -60,14 +61,43 @@ If anything fails, read startup.log in the app folder before guessing.
 2. Admin → **Settings** → **Site URL** → `https://<domain>` → Save. Do this before any page: Google reads this address in every canonical tag and the sitemap.
 3. Site name, language, logo (if they have one), the default share image.
 
-## Step 5: ready for the pages (structure only, no content)
+## Step 5: ready for the pages
 From the topical map, set up what the site needs before writing starts, and list the rest as tasks:
-- The **menu**: the homepage and the hub pages of each topic, in the map's priority order (Admin → Menus). Create pages only if the person asks; never write their content.
+- The **menu**: the homepage and the hub pages of each topic, in the map's priority order (Admin → Menus).
 - The pages every site needs before going public, as tasks: About, Contact, Privacy policy, Terms (and a disclaimer where the niche needs one).
-- **Claude connector for the site**: Admin → Users → API tokens → a token for Claude, so the writing work later can use the site's own connector.
+- **Claude connector for the site**: Admin → Users → API tokens → a token for Claude (with publish access only if they want Claude to publish), then add the site's own connector to Claude the way the BMS admin shows (Admin → Connect Claude). Steps 6 to 9 work through it.
 - Search Console: add the domain property (DNS check, the domain provider or Cloudflare), submit `https://<domain>/sitemap.xml` once the first pages are published. Then Planditor's Search Console tab → Connect Search Console.
 
-## Step 6: record the launch in Planditor
-- update_site: Platform "BMS (Cloudflare)" or "BMS (hosting)", Stage "brief" (pages not written yet), Notes: where it runs, the app folder or site name, the date. Never put passwords, secrets or setup codes in Planditor.
-- add_rows on **tasks**: one row per page from the map in priority order (Type "new page", Stage "todo", Brief = the slug), plus the legal pages and the go-live checks (Site URL set, sitemap submitted, Search Console connected).
-- Finish with a short summary: the site address, the admin address, what they still do themselves, and the next step (write the pages from the briefs).
+## Step 6: the content: ask first, then follow their way
+Ask, in one message:
+1. **Do you have the articles already?** (Their own writing, a writer's, a doc or a folder.) Then you post them **word for word**: never rewrite their words without their yes, sentence by sentence. You add only the on-page parts around them, from the page's brief: title (under 60 characters), meta description, headings where the text has none, internal links (3 or more in, 3 or more out, where the brief lists them), images with alt text, schema. List any problem you see (a fact that looks wrong, a missing section the brief asks for) and let them decide.
+2. **Or should I write them?** Then ask: do you have your **own writing skill, instructions, style guide or examples** I should follow? Use exactly what they give you, together with each page's brief from Planditor (the facts and sources it lists, the questions it must answer). Do not use any other private method or skill for this: their way, their brief.
+Either way: one page at a time in the briefs' priority order, saved as DRAFTS through the site's BMS connector, shown to the person before the next. Never invent facts, reviews, prices, phone numbers or experience. Mark each page's task "writing", then "review".
+
+## Step 7: the design: BMS blocks and the UI/UX skills
+1. **The skills first.** Use these design skills (all public; credit stays with their authors):
+   - **frontend-design** (Anthropic): https://github.com/anthropics/skills, folder skills/frontend-design: the design plan (named brand colours, fonts chosen for the niche, one layout idea) checked against its list of AI-generated tells.
+   - **unslop**: https://github.com/heydamir/unslop: removes the "AI-made" look (spacing, colour, icons, copy, type, layout).
+   - **emil-design-eng**, **apple-design** and **break-ui** (Emil Kowalski): https://github.com/emilkowalski/skills, folder skills: polish and details, restraint and typography, then break-ui after building (long words, long FAQ answers, one-item grids, phone width).
+   In Claude Code, if they are not installed, offer to install them (git clone each repo, copy the skill folders into ~/.claude/skills, start a new session). In claude.ai, read each SKILL.md from the repo and follow it.
+2. **The site's own look**, from the niche and the competitors in Planditor (competitors tab): a palette, fonts, a homepage order and a page layout of its own, shown to the person before you build. Never copy a competitor's design.
+3. **Build with BMS's own blocks.** get_blocks (summary first, then the types you will use, never guess prop names): hero, card grids, steps, FAQ accordions, tables, call-to-action bands and the rest. Settings and Customizer (colours, fonts, logo, header, footer) go live at once: say so before changing them.
+4. Check every page type at phone width (render_document, or the live page) and fix what break-ui finds.
+Avoid the AI-made look: an ALL-CAPS label above every heading, "Read more →" on every link, every section as the same rounded card, 01/02/03 badges on things that are not steps, one coloured word in each headline, fade-in on every section. One bold thing per page, the rest quiet.
+
+## Step 8: speed
+- Images: WebP, sized for where they show (no 3000-pixel photo in a 600-pixel box), alt text on each.
+- BMS Admin → **Speed**: turn on what it offers for this host (on Cloudflare: Always Use HTTPS on in the Cloudflare dashboard).
+- Measure, then fix: Google PageSpeed (pagespeed.web.dev) on mobile for the homepage, one hub and one article. Aim for green on Performance, Accessibility, Best Practices and SEO; fix the biggest item first and measure again.
+
+## Step 9: go live
+1. Publish in sets: a page together with everything it links to, never a page whose links point at drafts (or the person publishes in the admin when the token has no publish access).
+2. Settings: Site URL right, search engines allowed, the sitemap opens (`https://<domain>/sitemap.xml`).
+3. Search Console: add the domain, submit the sitemap; Bing Webmaster Tools too. Then Planditor's Search Console tab → Connect Search Console.
+4. The contact form: Admin → Email, and a test message.
+5. Click through the live site once on a phone: menu, links, forms, the call or contact buttons.
+
+## Step 10: record the launch in Planditor
+- update_site: Platform "BMS (Cloudflare)" or "BMS (hosting)", Notes: where it runs, the app folder or site name, the launch date. (Stage and Pages live follow the published pages by themselves.) Never put passwords, secrets or setup codes in Planditor.
+- add_rows on **tasks**: one row per page from the map not written yet, in priority order (Type "new page", Stage "todo", Brief = the slug), plus the legal pages and any go-live check still open. Pages already published are marked by Planditor by itself.
+- Finish with a short summary: the site address, the admin address, what is live, what they still do themselves, and the next step (the next pages from the briefs; later, when they want, the SEO audit and the off-page plan).
